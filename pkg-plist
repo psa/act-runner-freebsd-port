@@ -1,0 +1,4 @@
+sbin/act-runner
+etc/act-runner/act-runner.conf.sample
+@dir /var/db/act-runner/
+@dir etc/act-runner

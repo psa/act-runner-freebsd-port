@@ -1,0 +1,38 @@
+#!/bin/sh
+
+USER=act-runner
+GROUP=act-runner
+UID=806
+GID=806
+
+if [ "$2" = "PRE-INSTALL" ]; then
+  if /usr/sbin/pw groupshow "${GROUP}" >/dev/null 2>&1; then
+    echo "Using existing group \"${GROUP}\"."
+  else
+    if /usr/sbin/pw groupadd ${GROUP} -g ${GID}; then
+      echo "Added group \"${GROUP}\"."
+    else
+      echo "Adding group \"${GROUP}\" failed..."
+      echo "Please create it, and try again."
+      exit 1
+    fi
+  fi
+
+  if /usr/sbin/pw user show "${USER}" >/dev/null 2>&1; then
+    echo "Using existing user \"${USER}\"."
+  else
+    if /usr/sbin/pw useradd ${USER} -u ${UID} -g ${GROUP} \
+        -c "Act Runner User" -h - -d /var/db/act-runner \
+        -s /usr/sbin/nologin ; then
+      echo "Added user \"${USER}\"."
+    else
+      echo "Adding user \"${USER}\" failed..."
+      echo "Please create it, and try again."
+      exit 1
+    fi
+  fi
+fi
+
+if [ "$2" = "POST-INSTALL" ]; then
+  chown -R "${USER}:${GROUP}" %%ACT_RUNNER_DATA_DIR%%
+fi
