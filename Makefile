@@ -2,7 +2,7 @@
 
 PORTNAME=	act-runner
 DISTVERSIONPREFIX=      v
-DISTVERSION=	0.1.8
+DISTVERSION=	0.2.6
 CATEGORIES=	devel
 
 MAINTAINER=	freebsd-ports@otoh.org
