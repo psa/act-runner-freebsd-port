@@ -4,6 +4,10 @@
 FreeBSD does not support Docker.
 When configuring the runner, use 'host' as the label. e.g.
 act-runner register --labels FreeBSD:host,FreeBSD-14.0:host
+
+If you have a labels configuration section in your
+/usr/local/etc/act-runner.conf then ensure that references to docker have been
+removed from it.
 EOM
 }
 ]
