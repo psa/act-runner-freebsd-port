@@ -1,7 +1,7 @@
 [
 { type: install
   message: <<EOM
-FreeBSD does not supoprt Docker.
+FreeBSD does not support Docker.
 When configuring the runner, use 'host' as the label. e.g.
 act-runner register --labels FreeBSD:host,FreeBSD-14.0:host
 EOM
